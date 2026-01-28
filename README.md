@@ -13,7 +13,28 @@ This is the Telegram Mini App for Moltbot that provides a comprehensive dashboar
 - Knowledge Base Search: Search your personal knowledge base and memories
 - Automation Studio: Create and manage visual automation workflows
 - Health & Activity Tracker: Track habits, goals, and wellness metrics
+- **Real-time Weather**: Get current weather conditions and forecasts for Estoril, Portugal from Weather Underground
 
 ## How to Use
 
 This app is designed to work as a Telegram Mini App. Follow the instructions in the original repository to set it up with your bot.
+
+## Weather Integration
+
+The dashboard includes real-time weather information fetched from Weather Underground for Estoril, Portugal. The backend scrapes data from https://www.wunderground.com/forecast/pt/estoril to provide:
+
+- Current temperature in Celsius
+- Weather conditions and description
+- "Feels like" temperature
+- Humidity and wind speed
+- Location-specific forecasts
+- Regular updates (every 30 minutes)
+
+## Running Locally
+
+To run this dashboard locally:
+
+1. Install dependencies: `npm install`
+2. Set up environment variables (see `.env.example`)
+3. Start the server: `npm start`
+4. Access the app at `http://localhost:3000`

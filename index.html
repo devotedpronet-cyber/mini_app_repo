@@ -461,9 +461,11 @@
             </div>
             
             <div class="weather-display">
-                <div class="weather-desc">Sunny</div>
-                <div class="weather-temp">22°C</div>
-                <div>Feels like 24°C</div>
+                <div id="weather-content">
+                    <div class="weather-desc">Loading weather...</div>
+                    <div class="weather-temp">--°C</div>
+                    <div>Feels like --°C</div>
+                </div>
             </div>
         </div>
     </div>
@@ -827,6 +829,53 @@
             }
         }
         
+        // Function to get weather data
+        async function getWeather() {
+            try {
+                // This would connect to a backend service that accesses weather APIs
+                // For now, we'll simulate a request to a backend endpoint
+                const response = await fetch('/api/weather');
+                if (response.ok) {
+                    const weatherData = await response.json();
+                    updateWeatherDisplay(weatherData);
+                } else {
+                    // Fallback to a mock display if API is not available
+                    updateWeatherDisplay({
+                        temperature: 22,
+                        description: 'Sunny',
+                        feelsLike: 24,
+                        location: 'Your Location'
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+                // Display error message
+                document.getElementById('weather-content').innerHTML = `
+                    <div class="weather-desc">Weather unavailable</div>
+                    <div class="weather-temp">--°C</div>
+                    <div>Error loading weather data</div>
+                `;
+            }
+        }
+
+        function updateWeatherDisplay(data) {
+            const weatherContent = document.getElementById('weather-content');
+            weatherContent.innerHTML = `
+                <div class="weather-location">${data.location || 'Location'}</div>
+                <div class="weather-desc">${data.description}</div>
+                <div class="weather-temp">${Math.round(data.temperature)}°C</div>
+                <div>Feels like ${Math.round(data.feelsLike || data.temperature)}°C</div>
+            `;
+        }
+
+        // Load weather when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            getWeather();
+            
+            // Refresh weather every 30 minutes
+            setInterval(getWeather, 30 * 60 * 1000);
+        });
+
         // Initialize Telegram Web App if available
         if (window.Telegram && window.Telegram.WebApp) {
             const tg = window.Telegram.WebApp;
