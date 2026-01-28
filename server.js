@@ -1,7 +1,7 @@
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
-require('dotenv').config();
+const path = require('path');
+const { getActiveServices, getNotifications, getCronJobs, getTasks } = require('./api/system');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,20 +9,22 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname)));
+app.use(express.static('public'));
 
-// Routes
+// API Routes
+app.use('/api', require('./api/system'));
+app.use('/api/weather', require('./api/weather'));
+app.use('/api/files', require('./api/files'));
+app.use('/api/notes', require('./api/notes'));
+app.use('/api/tasks', require('./api/tasks'));
+app.use('/api/cron', require('./api/cron'));
+app.use('/api/search', require('./api/search'));
+
+// Serve static files
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-// Health check
-app.get('/health', (req, res) => {
-    res.json({ status: 'OK', timestamp: new Date().toISOString() });
-});
-
-// Start server
 app.listen(PORT, () => {
-    console.log(`Moltbot Dashboard server running on port ${PORT}`);
-    console.log(`Visit http://localhost:${PORT} to access the dashboard`);
+  console.log(`Moltbot Mini App server running on port ${PORT}`);
 });
