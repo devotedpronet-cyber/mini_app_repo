@@ -1,18 +1,16 @@
 {
-  "name": "moltbot-dashboard",
+  "name": "moltbot-telegram-app",
   "version": "1.0.0",
-  "description": "Telegram Mini App dashboard for Moltbot",
-  "main": "app.js",
+  "description": "Telegram Mini App for Moltbot with Dashboard, Weather, Tasks, and System Status",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
     "cors": "^2.8.5",
-    "axios": "^1.4.0",
-    "dotenv": "^16.3.1",
-    "cheerio": "^1.0.0-rc.12"
+    "dotenv": "^16.3.1"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
@@ -22,7 +20,9 @@
     "mini-app",
     "dashboard",
     "moltbot",
-    "productivity"
+    "weather",
+    "tasks",
+    "system-status"
   ],
   "author": "Moltbot",
   "license": "MIT"

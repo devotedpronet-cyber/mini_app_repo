@@ -1,40 +1,87 @@
-# Moltbot Dashboard
+# Moltbot Telegram Mini App
 
-This is the Telegram Mini App for Moltbot that provides a comprehensive dashboard for managing tasks, files, notes, system status, package tracking, and more.
+A comprehensive Telegram Mini App featuring a personal dashboard, weather app, task manager, and system status panel.
 
 ## Features
 
-- Dashboard Overview: View daily tasks, calendar events, weather, and notifications
-- Task Manager: Create and manage to-do lists with priority levels
-- File Explorer: Browse and manage workspace files
-- Quick Notes: Take and access notes synced with your knowledge base
-- System Status Panel: Check status of services, cron jobs, and running agents
-- Package Tracker: Monitor all shipments with tracking information
-- Knowledge Base Search: Search your personal knowledge base and memories
-- Automation Studio: Create and manage visual automation workflows
-- Health & Activity Tracker: Track habits, goals, and wellness metrics
-- **Real-time Weather**: Get current weather conditions and forecasts for Estoril, Portugal from Weather Underground
+1. **Personal Dashboard** - A quick overview of your daily tasks, calendar events, and important notifications
+2. **Weather App** - Current weather and forecast for Estoril, Portugal using WeatherAPI.com
+3. **Task Manager** - A simple interface to create, view, and manage your to-do list with priority levels
+4. **System Status Panel** - Shows the status of various services, cron jobs, and running agents
 
-## How to Use
+## Weather API Integration
 
-This app is designed to work as a Telegram Mini App. Follow the instructions in the original repository to set it up with your bot.
+This app uses WeatherAPI.com with the following features:
+- Current weather for Estoril, Portugal
+- 3-day forecast
+- Temperature in Celsius
+- Weather conditions, humidity, and wind speed
+- API key already integrated
 
-## Weather Integration
+## Installation
 
-The dashboard includes real-time weather information fetched from Weather Underground for Estoril, Portugal. The backend scrapes data from https://www.wunderground.com/forecast/pt/estoril to provide:
+1. Clone this repository:
+```bash
+git clone <repository-url>
+cd moltbot-telegram-app
+```
 
-- Current temperature in Celsius
-- Weather conditions and description
-- "Feels like" temperature
-- Humidity and wind speed
-- Location-specific forecasts
-- Regular updates (every 30 minutes)
+2. Install dependencies:
+```bash
+npm install
+```
 
-## Running Locally
+3. Start the server:
+```bash
+npm start
+```
 
-To run this dashboard locally:
-
-1. Install dependencies: `npm install`
-2. Set up environment variables (see `.env.example`)
-3. Start the server: `npm start`
 4. Access the app at `http://localhost:3000`
+
+## Telegram Integration
+
+To use this as a Telegram Mini App:
+
+1. Create a bot with BotFather
+2. Set the menu button URL to your deployed app URL
+3. Use the Telegram Web Apps platform to launch the mini app
+
+## Deployment
+
+### For Local Testing:
+- Run `npm start` to start the server
+- Access the app at `http://localhost:3000`
+
+### For Production Deployment:
+- Deploy to platforms like Heroku, Vercel, or any Node.js hosting service
+- Ensure your domain is HTTPS-enabled for Telegram Mini App functionality
+- Update the bot's menu button URL to point to your deployed URL
+
+## Structure
+
+- `index.html` - Main application with all four features
+- `server.js` - Express server to serve the application
+- `package.json` - Dependencies and scripts
+
+## Technologies Used
+
+- HTML5, CSS3, JavaScript
+- Telegram Web Apps SDK
+- WeatherAPI.com for weather data
+- Express.js for the server
+- LocalStorage for task persistence
+
+## Customization
+
+- Modify the UI in `index.html` to suit your preferences
+- Add more weather locations by changing the location parameter in the API calls
+- Extend the task manager with additional features
+- Add more system services to the status panel
+
+## API Keys
+
+The WeatherAPI.com key is already integrated in the client-side code. For production use, consider moving this to a backend proxy for security.
+
+## Support
+
+For issues or questions, please open an issue in the repository.
